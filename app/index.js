@@ -13,6 +13,10 @@ import StarRating from "react-native-star-rating-widget";
 import { data } from "../contants/data";
 
 const Home = () => {
+  const handleOpenLink = (link) => () => {
+    Linking.openURL(link);
+  };
+
   return (
     <SafeAreaView>
       <Stack.Screen
@@ -25,11 +29,7 @@ const Home = () => {
           data={data}
           renderItem={({ item }) => (
             <View style={{ width: 200 }}>
-              <TouchableOpacity
-                onPress={() => {
-                  Linking.openURL(item.image.uri);
-                }}
-              >
+              <TouchableOpacity onPress={handleOpenLink(item.image.uri)}>
                 <Image
                   source={item.image}
                   style={{ height: 200, width: 200, borderRadius: 20 }}
@@ -43,11 +43,7 @@ const Home = () => {
                 starSize={20}
                 style={{ marginTop: 8, marginBottom: 8 }}
               />
-              <TouchableOpacity
-                onPress={() => {
-                  Linking.openURL(item.image.uri);
-                }}
-              >
+              <TouchableOpacity onPress={handleOpenLink(item.image.uri)}>
                 <Text style={{ fontSize: 20, fontWeight: 500 }}>
                   {item.title}
                 </Text>
